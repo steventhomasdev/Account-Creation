@@ -4,6 +4,13 @@ body {
     margin: 0;
 }
 
+/* nav bar */
+
+#root .nav-bar{
+    background-color: #252F3D;
+    position: relative;
+}
+
 /* Container */
 
 #main-container.main-container {
@@ -119,7 +126,7 @@ p.typography-header {
     flex-direction: column;
     gap: 0.5rem;
     align-items: start;
-    min-width: "100%";
+    min-width: 100%;
 }
 
 .input-form-control .input-field {

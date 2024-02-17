@@ -4,9 +4,9 @@ import icon from "../assets/logo.svg";
 
 export default function Header() {
   return (
-    <AppBar component="nav" sx={{ backgroundColor: "#252F3D", position: "relative" }}>
+    <AppBar className="nav-bar" component="nav">
       <Container>
-        <Toolbar>
+        <Toolbar className="nav-items">
           <Box
             component="img"
             alt="The Idea Theorem Logo"

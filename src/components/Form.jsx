@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import DatePicker from "./DatePicker";
 import FormInput from "./FormInput";
+import SimpleBottomNavigation from "./MobileBottomNav";
 
 const Form = () => {
   return (
