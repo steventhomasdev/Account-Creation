@@ -6,25 +6,8 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 
-const DatePicker = ({ required }) => {
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-
-  const handleDayChange = (event) => {
-    setDay(event.target.value);
-  };
-
-  const handleMonthChange = (event) => {
-    setMonth(event.target.value);
-  };
-
-  const handleYearChange = (event) => {
-    setYear(event.target.value);
-  };
-
+const DatePicker = ({ formik }) => {
   return (
     <FormControl className="input-form-control">
       <Typography className="typography-label">Birthdate</Typography>
@@ -33,8 +16,12 @@ const DatePicker = ({ required }) => {
           <InputLabel className="star-label date-picker">Day</InputLabel>
           <Select
             className="input-field"
-            value={day}
-            onChange={handleDayChange}
+            name="day"
+            label="day"
+            value={formik.values.day}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.day && Boolean(formik.errors.day)}
           >
             {[...Array(31)].map((_, i) => (
               <MenuItem key={i} value={i + 1}>
@@ -48,8 +35,12 @@ const DatePicker = ({ required }) => {
           <InputLabel className="star-label date-picker">Month</InputLabel>
           <Select
             className="input-field"
-            value={month}
-            onChange={handleMonthChange}
+            name="month"
+            label="month"
+            value={formik.values.month}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.month && Boolean(formik.errors.month)}
           >
             {[...Array(12)].map((_, i) => (
               <MenuItem key={i} value={i + 1}>
@@ -63,8 +54,12 @@ const DatePicker = ({ required }) => {
           <InputLabel className="star-label date-picker">Year</InputLabel>
           <Select
             className="input-field"
-            value={year}
-            onChange={handleYearChange}
+            name="year"
+            label="year"
+            value={formik.values.year}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.year && Boolean(formik.errors.year)}
           >
             {[...Array(101)].map((_, i) => (
               <MenuItem key={i} value={2024 - i}>
