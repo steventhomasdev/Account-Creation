@@ -1,0 +1,51 @@
+@media screen and (max-width: 600px) {
+  .form-container .card .card-content {
+    max-width: 90%;
+  }
+
+  #main-container .form-container {
+    max-height: 100%;
+    max-width: 100vw;
+    margin-top: 54px;
+  }
+
+  .form-container .card {
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+  }
+
+  .form-container .btn-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 2rem;
+  }
+
+  p.typography-header {
+    margin-top: 2rem;
+    margin-left: 5%;
+    margin-bottom: 0;
+  }
+
+  .input-form-control .container-row {
+    gap: 0.5rem;
+  }
+
+  .form-container .btn-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 2rem;
+    position: sticky;
+    bottom: 0;
+    z-index: 99;
+    background: white;
+  }
+
+  .btn-container .btn {
+    width: 85%;
+  }
+}
