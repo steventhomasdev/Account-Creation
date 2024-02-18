@@ -1,6 +1,7 @@
 @media screen and (max-width: 600px) {
   .form-container .card .card-content {
     max-width: 90%;
+    padding-top: 1rem;
   }
 
   #main-container .form-container {
@@ -13,6 +14,7 @@
     width: 100%;
     max-width: 100vw;
     height: auto;
+    border-top: 1px solid #D8E0E9;
   }
 
   .form-container .btn-container {
@@ -20,13 +22,14 @@
     align-items: center;
     width: 100%;
     gap: 1rem;
-    padding-top: 2rem;
+    padding: 1.5rem 0;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.1);
   }
 
   p.typography-header {
     margin-top: 2rem;
     margin-left: 5%;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 
   .input-form-control .container-row {
@@ -49,12 +52,13 @@
     width: 85%;
   }
 
-  #main-container .alert-msg{
+  #main-container .alert-msg {
     position: fixed;
     bottom: 10rem;
     z-index: 100;
     width: 85%;
     right: auto;
     top: auto;
+    min-width: auto;
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
 
-const ActionButtons = () => {
+const ActionButton = () => {
   return (
     <Box className="btn-container">
       <Button className="btn outline" type="reset">
@@ -14,4 +14,4 @@ const ActionButtons = () => {
   );
 };
 
-export default ActionButtons;
+export default ActionButton;

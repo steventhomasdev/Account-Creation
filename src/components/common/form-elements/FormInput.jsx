@@ -2,6 +2,7 @@ import { FormControl, TextField, Typography } from "@mui/material";
 
 const FormInput = ({
   label,
+  heading,
   type,
   required,
   value,
@@ -13,7 +14,7 @@ const FormInput = ({
 }) => {
   return (
     <FormControl className="input-form-control">
-      <Typography className="typography-label">{label}</Typography>
+      <Typography className="typography-label">{heading? heading : label }</Typography>
       <TextField
         className="input-field star-label"
         label={label}

@@ -4,15 +4,15 @@ import { Container, Box, Typography, CardContent, Card } from "@mui/material";
 import { useFormik } from "formik";
 import { registerUserValidationSchema } from "./Schema";
 import AlertMsg from "../../common/AlertMsg";
-import ActionButton from "../../common/form-elements/ActionButtons";
 import DatePicker from "../../common/form-elements/DatePicker";
 import FormInput from "../../common/form-elements/FormInput";
-import {ValidDate, IsFutureDate} from "../../../utils/ValidateDate";
+import { ValidDate, IsFutureDate } from "../../../utils/ValidateDate";
 import { RegisterUser } from "../../../api_service/RegisterUser";
 import ActionButtons from "../../common/form-elements/ActionButtons";
 
 const Register = () => {
   const [submissionStatus, setSubmissionStatus] = useState("");
+  const [ alertMessage, setAlertMessage ] = useState("");
 
   const handleSubmit = async (values) => {
     const validDate = ValidDate(values.day, values.month, values.year);
@@ -21,8 +21,10 @@ const Register = () => {
     if (!validDate || futureDate) {
       formik.setErrors({
         ...formik.errors,
-        day: !validDate && "The day you entered is not valid for the selected month and year",
-        month: futureDate && "Birthdate cannot be in the future"
+        day:
+          !validDate &&
+          "The day you entered is not valid for the selected month and year",
+        month: futureDate && "Birthdate cannot be in the future",
       });
       return;
     }
@@ -31,12 +33,17 @@ const Register = () => {
 
     if (status === 200) {
       setSubmissionStatus("success");
+      setAlertMessage("User account successfully created.");
       formik.handleReset();
     }
-    if (status === 400) setSubmissionStatus("error");
+    if (status === 400) {
+      setSubmissionStatus("error");
+      setAlertMessage("There was an error creating the account.");
+    } 
     setTimeout(() => {
       setSubmissionStatus("");
-    }, 10000);
+      setAlertMessage("");
+    }, 5000);
   };
 
   const formik = useFormik({
@@ -56,7 +63,10 @@ const Register = () => {
 
   return (
     <Container id="main-container" className="main-container">
-      <AlertMsg status={submissionStatus} />
+
+      {submissionStatus !== "" && (
+        <AlertMsg status={submissionStatus} message={alertMessage} />
+      )}
 
       <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
         <Box className="form-container">
@@ -107,7 +117,8 @@ const Register = () => {
                 helperText={formik.touched.email && formik.errors.email}
               />
               <FormInput
-                label={"Password"}
+                heading="Password"
+                label="Create Password"
                 type={"password"}
                 required={true}
                 name="password"
