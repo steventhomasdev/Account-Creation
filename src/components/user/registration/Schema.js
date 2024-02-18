@@ -8,7 +8,7 @@ export const registerUserValidationSchema = {
     .required("Name is required")
     .matches(
       /^[a-zA-Z]+(?:\s[a-zA-Z]+)?$/,
-      "Name can only contain letters and spaces"
+      "Name must consist only of letters and spaces, with no leading or trailing spaces."
     )
     .min(1, "Name cannot be empty"),
   contact_number: yup
