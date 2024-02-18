@@ -113,6 +113,10 @@ p.typography-header {
 
 /* input */
 
+.input-form-control input {
+  border-color: #A5B6CD;
+}
+
 .input-form-control {
   display: flex;
   flex-direction: column;

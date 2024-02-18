@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import * as yup from "yup";
-import { Container, Box, Typography, CardContent, Card } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  CardContent,
+  Card,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { registerUserValidationSchema } from "./Schema";
 import AlertMsg from "../../common/AlertMsg";
@@ -9,10 +15,14 @@ import FormInput from "../../common/form-elements/FormInput";
 import { ValidDate, IsFutureDate } from "../../../utils/ValidateDate";
 import { RegisterUser } from "../../../api_service/RegisterUser";
 import ActionButtons from "../../common/form-elements/ActionButtons";
+import BackDrop from "../../common/BackDrop";
 
 const Register = () => {
   const [submissionStatus, setSubmissionStatus] = useState("");
-  const [ alertMessage, setAlertMessage ] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  console.log(loading)
 
   const handleSubmit = async (values) => {
     const validDate = ValidDate(values.day, values.month, values.year);
@@ -31,6 +41,7 @@ const Register = () => {
 
     const status = await RegisterUser(values);
 
+    setLoading(false);
     if (status === 200) {
       setSubmissionStatus("success");
       setAlertMessage("User account successfully created.");
@@ -39,7 +50,7 @@ const Register = () => {
     if (status === 400) {
       setSubmissionStatus("error");
       setAlertMessage("There was an error creating the account.");
-    } 
+    }
     setTimeout(() => {
       setSubmissionStatus("");
       setAlertMessage("");
@@ -63,7 +74,6 @@ const Register = () => {
 
   return (
     <Container id="main-container" className="main-container">
-
       {submissionStatus !== "" && (
         <AlertMsg status={submissionStatus} message={alertMessage} />
       )}
@@ -148,8 +158,9 @@ const Register = () => {
                 }
               />
             </CardContent>
+            <BackDrop loading={loading} color={"#fff"}/> 
           </Card>
-          <ActionButtons />
+          <ActionButtons setLoading={setLoading} />
         </Box>
       </form>
     </Container>

@@ -8,7 +8,6 @@ const AlertMsg = ({ status, message }) => {
     error: <CancelOutlinedIcon style={{ color: "#333333" }} />,
   };
 
-  console.log(status);
   return (
     <Alert icon={iconMapping[status]} className={`alert-msg ${status}`} severity={status}>
       {message}
