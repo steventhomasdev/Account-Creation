@@ -19,7 +19,7 @@ const AlertMsg = ({ status }) => {
       {status === "error" && (
         <Alert
           iconMapping={{
-            success: <CancelOutlinedIcon style={{ color: "#333333" }} />,
+            error: <CancelOutlinedIcon style={{ color: "#333333" }} />,
           }}
           className="alert-msg"
           severity="error"

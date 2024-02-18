@@ -13,11 +13,9 @@ export const CreateAccount = async (values) => {
       password,
       date_of_birth: `${day}${month}${year}`,
     });
-    console.log(response.status)
     return response.status;
   } catch (error) {
     if (error.response) {
-        console.log( error.response.status)
       return error.response.status;
     }
   }

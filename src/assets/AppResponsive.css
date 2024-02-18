@@ -48,4 +48,11 @@
   .btn-container .btn {
     width: 85%;
   }
+
+  #main-container .alert-msg{
+    bottom: 16%;
+    z-index: 100;
+    width: 85%;
+    right: auto;
+  }
 }

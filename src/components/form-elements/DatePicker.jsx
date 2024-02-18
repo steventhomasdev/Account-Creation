@@ -1,13 +1,18 @@
 import MenuItem from "@mui/material/MenuItem";
+import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+import moment from "moment";
 import {
   Container,
   FormControl,
   InputLabel,
   Select,
   Typography,
+  FormHelperText,
 } from "@mui/material";
 
 const DatePicker = ({ formik }) => {
+  const year = moment().year();
+
   return (
     <FormControl className="input-form-control">
       <Typography className="typography-label">Birthdate</Typography>
@@ -22,7 +27,9 @@ const DatePicker = ({ formik }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.day && Boolean(formik.errors.day)}
+            IconComponent={ExpandMoreOutlinedIcon}
           >
+            <MenuItem value=""></MenuItem>
             {[...Array(31)].map((_, i) => (
               <MenuItem key={i} value={i + 1}>
                 {i + 1}
@@ -41,10 +48,24 @@ const DatePicker = ({ formik }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.month && Boolean(formik.errors.month)}
+            IconComponent={ExpandMoreOutlinedIcon}
           >
-            {[...Array(12)].map((_, i) => (
+            {[
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec",
+            ].map((month, i) => (
               <MenuItem key={i} value={i + 1}>
-                {i + 1}
+                {month}
               </MenuItem>
             ))}
           </Select>
@@ -60,15 +81,19 @@ const DatePicker = ({ formik }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.year && Boolean(formik.errors.year)}
+            IconComponent={ExpandMoreOutlinedIcon}
           >
             {[...Array(101)].map((_, i) => (
-              <MenuItem key={i} value={2024 - i}>
-                {2024 - i}
+              <MenuItem key={i} value={year - i}>
+                {year - i}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
       </Container>
+      {formik.touched.day && formik.errors.day ? (
+        <FormHelperText error>{formik.errors.day}</FormHelperText>
+      ) : null}
     </FormControl>
   );
 };

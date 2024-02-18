@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 body {
   margin: 0;
@@ -17,9 +17,9 @@ body {
 /* form  */
 
 #main-container .form-container {
-    display: flex;
-    flex-direction: column;
-    max-height: 820px;
+  display: flex;
+  flex-direction: column;
+  max-height: 820px;
 }
 
 /* card */
@@ -33,6 +33,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: none;
 }
 
 .form-container .card .card-content {
@@ -159,19 +160,25 @@ p.typography-header {
 /* Alert Message */
 
 #main-container .alert-msg {
-    position: absolute;
-    top: 10%;
-    right: 1%;
-    width: 350px;
-    padding: 14px 17px;
-    border-radius: 4px;
-    background-color: #CDFADC;
-    font-family: Lato;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 27px;
-    letter-spacing: 0em;
-    text-align: left;
-    justify-content: flex-start;
-    align-items: center;
+  position: absolute;
+  top: 8%;
+  right: 0%;
+  width: 350px;
+  padding: 14px 17px;
+  border-radius: 4px;
+  background-color: #cdfadc;
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* helper text */
+
+.form-container .MuiFormHelperText-root {
+  margin-left: 0;
 }

@@ -7,6 +7,7 @@ import AlertMsg from "./AlertMsg";
 import ActionButton from "./form-elements/ActionButton";
 import DatePicker from "./form-elements/DatePicker";
 import FormInput from "./form-elements/FormInput";
+import ValidateDate from "./utils/ValidateDate";
 
 const Form = () => {
   const [submissionStatus, setSubmissionStatus] = useState("");
@@ -24,8 +25,14 @@ const Form = () => {
     },
     validationSchema: ValidationSchema,
     onSubmit: async (values) => {
+      
+      const errorMessage = ValidateDate(values.day, values.month, values.year);
+      if (errorMessage) {
+        formik.setErrors({ ...formik.errors, day: errorMessage, month: errorMessage });
+        return;
+      }
+  
       const status = await CreateAccount(values);
-      console.log(status);
       if (status === 200) {
         setSubmissionStatus("success");
         formik.handleReset();
@@ -91,7 +98,7 @@ const Form = () => {
               />
               <FormInput
                 label={"Password"}
-                type={"text"}
+                type={"password"}
                 required={true}
                 name="password"
                 value={formik.values.password}
@@ -104,7 +111,7 @@ const Form = () => {
               />
               <FormInput
                 label={"Confirm Password"}
-                type={"text"}
+                type={"password"}
                 required={true}
                 name="confirm_password"
                 value={formik.values.confirm_password}

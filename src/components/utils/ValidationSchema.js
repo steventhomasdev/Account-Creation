@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import moment from "moment";
+import { isValidNumber } from "libphonenumber-js";
 
 export const ValidationSchema = () => {
   return yup.object({
@@ -14,9 +15,12 @@ export const ValidationSchema = () => {
     contact_number: yup
       .string("Enter your contact number")
       .required("Contact number is required")
-      .matches(
-        /^\d{3}-\d{3}-\d{4}$/,
-        "Contact number must be in Canadian format (e.g. 123-456-7890)"
+      .test(
+        "Is Canadian",
+        "Please enter a Canadian contact number",
+        (value) => {
+          return (isValidNumber(value, "CA"));
+        }
       ),
     email: yup
       .string("Enter your email address")
@@ -27,7 +31,7 @@ export const ValidationSchema = () => {
       .required("Password is required")
       .min(8, "Password must be at least 8 characters long")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])[a-zA-Z0-9!@#%&]+$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])[a-zA-Z0-9!@#%&]*$/,
         "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special symbol"
       ),
     confirm_password: yup
