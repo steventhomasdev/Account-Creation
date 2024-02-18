@@ -1,16 +1,43 @@
 import React, { useState } from "react";
+import * as yup from "yup";
 import { Container, Box, Typography, CardContent, Card } from "@mui/material";
 import { useFormik } from "formik";
-import { ValidationSchema } from "./form/ValidationSchema";
-import AlertMsg from "./common/AlertMsg";
-import ActionButton from "./form/form-elements/ActionButton";
-import DatePicker from "./form/form-elements/DatePicker";
-import FormInput from "./form/form-elements/FormInput";
-import ValidateDate from "../utils/ValidateDate";
-import { CreateAccount } from "./form/CreateAccount";
+import { registerUserValidationSchema } from "./Schema";
+import AlertMsg from "../../common/AlertMsg";
+import ActionButton from "../../common/form-elements/ActionButtons";
+import DatePicker from "../../common/form-elements/DatePicker";
+import FormInput from "../../common/form-elements/FormInput";
+import {ValidDate, IsFutureDate} from "../../../utils/ValidateDate";
+import { RegisterUser } from "../../../api_service/RegisterUser";
+import ActionButtons from "../../common/form-elements/ActionButtons";
 
-const Form = () => {
+const Register = () => {
   const [submissionStatus, setSubmissionStatus] = useState("");
+
+  const handleSubmit = async (values) => {
+    const validDate = ValidDate(values.day, values.month, values.year);
+    const futureDate = IsFutureDate(values.day, values.month, values.year);
+
+    if (!validDate || futureDate) {
+      formik.setErrors({
+        ...formik.errors,
+        day: !validDate && "The day you entered is not valid for the selected month and year",
+        month: futureDate && "Birthdate cannot be in the future"
+      });
+      return;
+    }
+
+    const status = await RegisterUser(values);
+
+    if (status === 200) {
+      setSubmissionStatus("success");
+      formik.handleReset();
+    }
+    if (status === 400) setSubmissionStatus("error");
+    setTimeout(() => {
+      setSubmissionStatus("");
+    }, 10000);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -23,25 +50,8 @@ const Form = () => {
       month: "",
       year: "",
     },
-    validationSchema: ValidationSchema,
-    onSubmit: async (values) => {
-      
-      const errorMessage = ValidateDate(values.day, values.month, values.year);
-      if (errorMessage) {
-        formik.setErrors({ ...formik.errors, day: errorMessage, month: errorMessage, year: errorMessage });
-        return;
-      }
-  
-      const status = await CreateAccount(values);
-      if (status === 200) {
-        setSubmissionStatus("success");
-        formik.handleReset();
-      }
-      if (status === 400) setSubmissionStatus("error");
-      setTimeout(() => {
-        setSubmissionStatus("");
-      }, 10000);
-    },
+    validationSchema: yup.object(registerUserValidationSchema),
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -128,11 +138,11 @@ const Form = () => {
               />
             </CardContent>
           </Card>
-          <ActionButton />
+          <ActionButtons />
         </Box>
       </form>
     </Container>
   );
 };
 
-export default Form;
+export default Register;

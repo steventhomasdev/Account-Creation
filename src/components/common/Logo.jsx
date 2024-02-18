@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-function Logo({ icon }) {
+function Logo({ icon, altText }) {
   return (
     <Box
       component="img"
-      alt="The Idea Theorem Logo"
+      alt={altText}
       src={icon}
       sx={{
         width: { xs: '148px', md: '294px' },

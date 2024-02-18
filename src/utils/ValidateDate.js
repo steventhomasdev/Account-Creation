@@ -1,17 +1,14 @@
 import moment from "moment";
 
-const ValidateDate = (day, month, year) => {
+export const ValidDate = (day, month, year) => {
   const selectedDate = moment([year, month - 1, day]);
-  const currentDate = moment().startOf("day");
-  
-  if (!selectedDate.isValid()) {
-    return "The day you entered is not valid for the selected month and year";
-  }
 
-  if (selectedDate.isAfter(currentDate)) {
-    return "Birthdate cannot be in the future";
-  }
-  return null;
+  return selectedDate.isValid();
 };
 
-export default ValidateDate;
+export const IsFutureDate = (day, month, year) => {
+  const selectedDate = moment([year, month - 1, day]);
+  const currentDate = moment().startOf("day");
+
+  return selectedDate.isAfter(currentDate);
+};
