@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Container, Box, Typography, CardContent, Card } from "@mui/material";
 import { useFormik } from "formik";
-import { CreateAccount } from "../utils/api/Api";
-import { ValidationSchema } from "../utils/ValidationSchema";
+import { ValidationSchema } from "./form/ValidationSchema";
 import AlertMsg from "./common/AlertMsg";
-import ActionButton from "./form-elements/ActionButton";
-import DatePicker from "./form-elements/DatePicker";
-import FormInput from "./form-elements/FormInput";
+import ActionButton from "./form/form-elements/ActionButton";
+import DatePicker from "./form/form-elements/DatePicker";
+import FormInput from "./form/form-elements/FormInput";
 import ValidateDate from "../utils/ValidateDate";
+import { CreateAccount } from "./form/CreateAccount";
 
 const Form = () => {
   const [submissionStatus, setSubmissionStatus] = useState("");
