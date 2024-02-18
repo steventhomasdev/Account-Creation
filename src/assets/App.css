@@ -97,7 +97,7 @@ body {
 
 p.typography-header {
   font-family: Lato;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 30px;
   letter-spacing: 0em;
@@ -107,7 +107,7 @@ p.typography-header {
 
 .input-form-control .typography-label {
   font-family: Lato;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.15000000596046448px;

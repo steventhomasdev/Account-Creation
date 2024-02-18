@@ -50,9 +50,11 @@
   }
 
   #main-container .alert-msg{
-    bottom: 16%;
+    position: fixed;
+    bottom: 10rem;
     z-index: 100;
     width: 85%;
     right: auto;
+    top: auto;
   }
 }
