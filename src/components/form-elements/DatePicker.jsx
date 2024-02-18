@@ -12,6 +12,7 @@ import {
 
 const DatePicker = ({ formik }) => {
   const year = moment().year();
+  const fields = ["day", "month", "year"];
 
   return (
     <FormControl className="input-form-control">
@@ -91,9 +92,15 @@ const DatePicker = ({ formik }) => {
           </Select>
         </FormControl>
       </Container>
-      {formik.touched.day && formik.errors.day ? (
-        <FormHelperText error>{formik.errors.day}</FormHelperText>
-      ) : null}
+      {fields.map(
+        (field, key) =>
+          formik.touched[field] &&
+          formik.errors[field] && (
+            <FormHelperText key={key} error>
+              {formik.errors[field]}
+            </FormHelperText>
+          )
+      )}
     </FormControl>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react";
-import {AppBar, Toolbar, Container, Box} from "@mui/material";
+import {AppBar, Toolbar, Container} from "@mui/material";
 import icon from "../assets/logo.svg";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Logo from "./common/Logo";
 
 
 export default function Header() {
@@ -12,15 +13,7 @@ export default function Header() {
     <AppBar component="nav" sx={{ backgroundColor: "#252F3D",  position: matches ? "relative" : "fixed" }}>
       <Container>
         <Toolbar>
-          <Box
-            component="img"
-            alt="The Idea Theorem Logo"
-            src={icon}
-            sx={{
-                width: { xs: '148px', md: '294px' },
-                height: { xs: '16px', md: '32px' }
-              }}
-          />
+          <Logo icon={icon}/>
         </Toolbar>
       </Container>
     </AppBar>

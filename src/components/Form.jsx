@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Container, Box, Typography, CardContent, Card } from "@mui/material";
 import { useFormik } from "formik";
-import { CreateAccount } from "./api/api";
-import { ValidationSchema } from "./utils/ValidationSchema";
-import AlertMsg from "./AlertMsg";
+import { CreateAccount } from "../utils/api/Api";
+import { ValidationSchema } from "../utils/ValidationSchema";
+import AlertMsg from "./common/AlertMsg";
 import ActionButton from "./form-elements/ActionButton";
 import DatePicker from "./form-elements/DatePicker";
 import FormInput from "./form-elements/FormInput";
-import ValidateDate from "./utils/ValidateDate";
+import ValidateDate from "../utils/ValidateDate";
 
 const Form = () => {
   const [submissionStatus, setSubmissionStatus] = useState("");
@@ -28,7 +28,7 @@ const Form = () => {
       
       const errorMessage = ValidateDate(values.day, values.month, values.year);
       if (errorMessage) {
-        formik.setErrors({ ...formik.errors, day: errorMessage, month: errorMessage });
+        formik.setErrors({ ...formik.errors, day: errorMessage, month: errorMessage, year: errorMessage });
         return;
       }
   

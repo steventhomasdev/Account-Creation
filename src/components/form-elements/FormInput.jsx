@@ -1,6 +1,16 @@
 import { FormControl, TextField, Typography } from "@mui/material";
 
-const FormInput = ({ label, type, required, value, onChange, onBlur, error, helperText, name }) => {
+const FormInput = ({
+  label,
+  type,
+  required,
+  value,
+  onChange,
+  onBlur,
+  error,
+  helperText,
+  name,
+}) => {
   return (
     <FormControl className="input-form-control">
       <Typography className="typography-label">{label}</Typography>
@@ -15,7 +25,7 @@ const FormInput = ({ label, type, required, value, onChange, onBlur, error, help
         onBlur={onBlur}
         error={error}
         helperText={helperText}
-        />
+      />
     </FormControl>
   );
 };

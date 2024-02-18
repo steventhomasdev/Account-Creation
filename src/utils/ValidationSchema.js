@@ -31,7 +31,7 @@ export const ValidationSchema = () => {
       .required("Password is required")
       .min(8, "Password must be at least 8 characters long")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])[a-zA-Z0-9!@#%&]*$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])?[a-zA-Z0-9!@#%&]*$/,
         "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special symbol"
       ),
     confirm_password: yup
