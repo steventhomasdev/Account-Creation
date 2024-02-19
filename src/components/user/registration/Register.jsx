@@ -22,8 +22,6 @@ const Register = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  console.log(loading)
-
   const handleSubmit = async (values) => {
     const validDate = ValidDate(values.day, values.month, values.year);
     const futureDate = IsFutureDate(values.day, values.month, values.year);
